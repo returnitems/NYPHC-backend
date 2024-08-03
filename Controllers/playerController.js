@@ -1,7 +1,7 @@
 import express from "express";
-import Player from "../models/playerSchema";
+import Player from "../models/playerSchema.js"
 
-const getPlayers = async (req, res) => {
+export const getPlayers = async (req, res) => {
     try {
         const playerList = await Player.find({});
         res.status(200).json(playerList);
@@ -11,7 +11,7 @@ const getPlayers = async (req, res) => {
 };
 
 
-const getSinglePlayer = async (req, res) => {
+export const getSinglePlayer = async (req, res) => {
     try {
         const player = await Player.findById(req.params.playerId);
         if (!player) {
@@ -26,7 +26,7 @@ const getSinglePlayer = async (req, res) => {
 
 
 
-const createPlayer = async (req, res) => {
+export const createPlayer = async (req, res) => {
     try {
         const newPlayer = await Player.create(req.body);
         res.status(201).json(newPlayer);
@@ -36,7 +36,7 @@ const createPlayer = async (req, res) => {
 };
 
 
-const updatePlayer = async (req, res) => {
+export const updatePlayer = async (req, res) => {
     try {
         const updatedPlayer = await Player.findByIdAndUpdate(req.params.playerId, req.body, {new: true});
         if (!updatedPlayer) {
@@ -50,7 +50,7 @@ const updatePlayer = async (req, res) => {
 };
 
 
-const deletePlayer = async (req, res) => {
+export const deletePlayer = async (req, res) => {
     try {
         const deletedPlayer = await Player.findByIdAndDelete(req.params.playerId);
         if (!deletedPlayer) {
@@ -64,4 +64,4 @@ const deletePlayer = async (req, res) => {
 };
 
 
-module.exports = {getPlayers, getSinglePlayer, createPlayer, updatePlayer, deletePlayer};
+// export default { getPlayers, getSinglePlayer, createPlayer, updatePlayer, deletePlayer }

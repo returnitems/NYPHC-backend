@@ -6,3 +6,8 @@ const router = Router();
 
 router.get('/', playerController.getPlayers);
 router.get('/:playerId', playerController.getSinglePlayer);
+router.post('/', playerController.createPlayer);
+router.put('/:playerId', playerController.updatePlayer);
+router.delete('/:playerId', playerController.deletePlayer);
+
+export default router;
